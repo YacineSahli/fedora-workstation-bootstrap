@@ -1,0 +1,8 @@
+.bash_history
+.ansible/
+.cache/
+.config/
+.local/
+.vagrant/
+
+.DS_Store

@@ -1,0 +1,95 @@
+---
+# additional repositories
+repo_rpmfusion:
+  - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+  - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+
+#repo_iridium: "https://dl.iridiumbrowser.de/fedora_32/iridium-browser.repo"
+
+#repo_osquery: "https://pkg.osquery.io/rpm/osquery-s3-rpm.repo"
+#rpm_gpp_key_osquery: "https://pkg.osquery.io/rpm/GPG"
+
+rpm_gpg_key_kopiaui: "https://kopia.io/signing-key"
+
+# packages to install
+packages:
+  - gnome-extensions-app
+  - htop
+  - VirtualBox
+  - chromium
+  - dconf-editor
+  - docker-compose
+  - gimp
+  - git
+  - git-extras
+  - gnome-tweaks
+  - gstreamer1-libav
+  - gstreamer1-plugin-openh264
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-good-extras
+  - gstreamer1-plugins-ugly
+  - gstreamer1-vaapi
+  - ffmpeg
+  - iftop
+  - thunderbird
+  - jq
+  - youtube-dl
+  - mozilla-openh264
+  - nextcloud-client
+  - nextcloud-client-nautilus
+  - ncdu
+  - ngrep
+  - openh264-devel
+  - openssl
+  - pandoc
+  - pulseeffects
+  - rclone
+  - smartmontools
+  - s-tui
+  - lshw
+  - lm_sensors
+  - kopia-ui
+  - tor
+  - discord
+  - code
+  - zerotier-one
+  - powertop
+  - tlp
+  - tlp-rdw
+  - zsh
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - fzf
+# Fonts
+  - cascadia-code-fonts
+  - cascadia-code-pl-fonts
+  - ibm-plex-fonts-all
+  - fira-code-fonts
+  - adobe-source-code-pro-fonts
+  - google-roboto-mono-fonts
+  - redhat-mono-fonts
+  - levien-inconsolata-fonts
+  - google-go-mono-fonts
+  - jetbrains-mono-fonts
+
+flatpaks:
+  - com.spotify.Client
+  - com.authy.Authy
+  - com.anydesk.Anydesk
+  - com.bitwarden.desktop
+  - com.calibre_ebook.calibre
+  - com.obsproject.Studio
+  - com.xnview.XnConvert
+  - com.usebottles.bottles
+  - net.ankiweb.Anki
+  - net.cozic.joplin_desktop
+  - org.onlyoffice.desktopeditors
+  - org.cryptomator.Cryptomator
+  - me.kozec.syncthingtk
+  - com.github.iwalton3.jellyfin-media-player
+  - org.signal.Signal
+
+# third party packages
+#package_third_party:
+  #- "https://prerelease.keybase.io/keybase_amd64.rpm"
+  #- "https://zoom.us/client/latest/zoom_x86_64.rpm"

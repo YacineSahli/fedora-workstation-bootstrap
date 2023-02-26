@@ -1,0 +1,60 @@
+---
+- name: check if home directory exists
+  stat:
+    path: "{{ home_path }}"
+  become: false
+  register: home
+  tags: dotfiles
+
+- name: create home directory
+  file:
+    path: "{{ home_path }}"
+    state: directory
+    mode: 0755
+  become: false
+  when: not home.stat.exists
+  tags: dotfiles
+
+- name: check if ~/bin directory exists
+  stat:
+    path: "{{ home_path }}/bin"
+  become: false
+  register: bin
+  tags: dotfiles
+
+- name: create ~/bin directory
+  file:
+    path: "{{ home_path }}/bin"
+    state: directory
+    mode: 0755
+  become: false
+  when: not bin.stat.exists
+  tags: dotfiles
+
+- name: copy git dotfile
+  copy:
+    src: "{{ item }}"
+    dest: "{{ home_path }}/.gitconfig"
+    mode: 0644
+  become: false
+  with_fileglob:
+    - "git/.gitconfig"
+  tags:
+    - dotfiles
+    - git
+
+
+# ZSH
+- name: copy ZSH custom aliases file
+  copy:
+    src: "{{ item }}"
+    dest: "{{ home_path }}/.oh-my-zsh/custom/"
+    mode: 0644
+  become: false
+  with_fileglob:
+    - "zsh/aliases.zsh"
+    - "zsh/config.zsh"
+  tags:
+    - dotfiles
+    - git
+

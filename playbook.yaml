@@ -1,0 +1,149 @@
+---
+- name: Main play install packages and dotfiles
+  hosts: all
+  connection: local
+  become: yes
+  become_method: sudo
+  become_user: root
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  vars_files:
+    - vars/main.yaml
+    - vars/packages.yaml
+    #- vars/iptables.yaml
+
+  tasks:
+    - include_tasks: tasks/dotfiles.yaml
+      tags:
+        - dotfiles
+
+    - include_tasks: tasks/nvim.yaml
+      tags:
+        - dotfiles
+        - nvim
+
+    - include_tasks: tasks/packages.yaml
+      tags:
+        #- keybase
+        - packages
+        - flatpak
+        #- zoom
+
+- name: Set customize Gnome
+  hosts: all
+  connection: local
+  become: yes
+  become_method: sudo
+  roles:
+    - role: PeterMosmans.customize-gnome
+  vars:
+    gnome_extensions:
+      - id: 517
+        enable: yes
+      - id: 277
+        enable: yes
+      - id: 4679
+        enable: yes
+      - id: 7
+        enable: yes
+      - id: 906
+        enable: yes
+      - id: 4470
+        enable: yes
+      - id: 1460
+        enable: yes
+      - id: 3193      # blur-my-shell
+        enable: yes
+      - id: 615      # AppIndicator
+        enable: yes
+    gnome_gsettings:
+      - schema: org.gnome.desktop.peripherals.touchpad
+        key: natural-scroll
+        value: "false"
+      - schema: org.gnome.desktop.peripherals.touchpad
+        key: tap-to-click
+        value: "true"
+      - schema: org.gnome.settings-daemon.plugins.media-keys # Remap Email to super+e
+        key: email
+        value: \[\'<Super>e\'\]
+      - schema: org.gnome.settings-daemon.plugins.media-keys # Remap Browser to super+w
+        key: www
+        value: \[\'<Super>w\'\]
+      - schema: org.gnome.desktop.wm.keybindings # Remap close window to super+q
+        key: close
+        value: \[\'<Super>q\'\]
+      - schema: org.gnome.settings-daemon.plugins.media-keys # Remap Calculator to super+c
+        key: calculator
+        value: \[\'<Super>c\'\]
+      - schema: org.gnome.settings-daemon.plugins.media-keys # Remap volume up to super+'+'
+        key: volume-up
+        value: \[\'<Super>+\'\] # Not working todo
+      - schema: org.gnome.settings-daemon.plugins.media-keys # Remap volume down to super+'-'
+        key: volume-down
+        value: \[\'<Super>-\'\] # Not working todo
+      - schema: org.gnome.desktop.input-sources  # Remap capslock to super/windows key
+        key: xkb-options
+        value: \[\'caps:super\'\]
+      - schema: org.gnome.desktop.wm.keybindings # Remap toggle fullscreen to super+f
+        key: toggle-fullscreen
+        value: \[\'<Super>f\'\] 
+      - schema: org.gnome.desktop.wm.keybindings  # Remap move to left workspace to super+1
+        key: switch-to-workspace-left
+        value: \[\'<Super>1\'\]
+      - schema: org.gnome.shell.keybindings   # Remap to nothing
+        key: switch-to-application-1
+        value: \[\]
+      - schema: org.gnome.desktop.wm.keybindings  # Remap move to right workspace to super+2
+        key: switch-to-workspace-right
+        value: \[\'<Super>2\'\]
+      - schema: org.gnome.shell.keybindings   # Remap to nothing
+        key: switch-to-application-2
+        value: \[\]
+      - schema: org.gnome.desktop.wm.keybindings   # Remap move window to left workspace to super+shift+1
+        key: move-to-workspace-left
+        value: \[\'<Super><Shift>1\'\]
+      - schema: org.gnome.desktop.wm.keybindings   # Remap move window to right workspace to super+shift+2
+        key: move-to-workspace-right
+        value: \[\'<Super><Shift>2\'\]
+
+      # Custom keybinding 1 Open terminal
+      - schema: org.gnome.settings-daemon.plugins.media-keys   # Create the custom0 keybinding
+        key: custom-keybindings
+        value: \[\'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/\'\]
+      - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/   # Name
+        key: name
+        value: Terminal
+      - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/   # Command
+        key: command
+        value: "gnome-terminal"
+      - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/   # Command
+        key: binding
+        value: \'<Super>Return\'
+    gnome_user: kzeran
+
+- name: Set OhMyZsh
+  hosts: all
+  connection: local
+  tags: ohmyzsh
+  roles:
+    - role: gantsign.oh-my-zsh
+  vars:
+    oh_my_zsh_theme: robbyrussell
+    users:
+      - username: kzeran
+        oh_my_zsh:
+          theme: robbyrussell
+          install: yes
+          plugins:
+            - git
+            - docker
+              #- zsh-autosuggestions
+              #- zsh-syntax-highlighting
+          update_mode: reminder
+          update_frequency: 30
+  tasks:
+    - name: change user shell to zsh 
+      become: no
+      user:
+        name: kzeran
+        shell: /bin/zsh

@@ -1,0 +1,16 @@
+---
+- include: dotfiles.yaml
+  tags:
+    - dotfiles
+
+- include: nvim.yaml
+  tags:
+    - dotfiles
+    - nvim
+
+- include: packages.yaml
+  tags:
+    #- keybase
+    - packages
+    #- zoom
+

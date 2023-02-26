@@ -1,0 +1,41 @@
+---
+- name: ensure install nvim (neovim)
+  dnf:
+    name: neovim
+    state: present
+  tags:
+    - dotfiles
+    - nvim
+
+- name: check if nvim autoload directory exists
+  stat:
+    path: "{{ home_path }}/.local/share/nvim/site/autoload/"
+  become: false
+  register: autoload
+  tags:
+    - dotfiles
+    - nvim
+
+
+- name: check if nvim config directory exists
+  stat:
+    path: "{{ home_path }}/.config/nvim"
+  become: false
+  register: nvim
+  tags:
+    - dotfiles
+    - nvim
+
+- name: Deploy ultimate vim config
+  become: no
+  git:
+    dest: "{{ home_path }}/.vim_runtime"
+    repo: https://github.com/amix/vimrc
+    clone: yes
+    update: yes
+    recursive: no
+    depth: 1
+
+- name: Install ultimate vim config
+  become: no
+  command: sh "{{ home_path }}/.vim_runtime/install_awesome_vimrc.sh"

@@ -1,0 +1,3 @@
+# Install Customize Gnome role
+- src: PeterMosmans.customize-gnome
+- src: gantsign.oh-my-zsh
