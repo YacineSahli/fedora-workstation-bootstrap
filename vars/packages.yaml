@@ -49,6 +49,7 @@ packages:
   - lshw
   - lm_sensors
   - kopia-ui
+  - calibre
   - tor
   - discord
   - code
@@ -60,6 +61,7 @@ packages:
   - zsh-autosuggestions
   - zsh-syntax-highlighting
   - fzf
+  - nautilus-gsconnect
 # Fonts
   - cascadia-code-fonts
   - cascadia-code-pl-fonts
@@ -77,7 +79,6 @@ flatpaks:
   - com.authy.Authy
   - com.anydesk.Anydesk
   - com.bitwarden.desktop
-  - com.calibre_ebook.calibre
   - com.obsproject.Studio
   - com.xnview.XnConvert
   - com.usebottles.bottles

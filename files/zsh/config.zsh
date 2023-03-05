@@ -39,6 +39,7 @@ bindkey '^R' history-incremental-pattern-search-backward
 autoload -U compinit
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 zstyle ':completion:*' menu select
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 

@@ -35,6 +35,10 @@
     update: yes
     recursive: no
     depth: 1
+  register: repo_clone
+  failed_when:
+    - repo_clone.failed
+    - not 'Local modifications exist in the destination:' in repo_clone.msg
 
 - name: Install ultimate vim config
   become: no
