@@ -53,6 +53,8 @@
         enable: yes
       - id: 1460
         enable: yes
+      - id: 1401     # bluetooth quick-connect
+        enable: yes
       - id: 3193     # blur-my-shell
         enable: yes
       - id: 615      # AppIndicator
