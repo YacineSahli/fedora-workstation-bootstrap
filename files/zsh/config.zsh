@@ -25,7 +25,7 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 
 # History in cache directory:
-#setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY_TIME
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
@@ -122,4 +122,4 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # Load syntax highlighting; should be last.
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-
+export AWS_PROFILE=yacine-poweruser
