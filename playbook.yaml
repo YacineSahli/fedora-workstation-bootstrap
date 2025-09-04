@@ -127,6 +127,20 @@
       - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/   # Command
         key: binding
         value: \'<Super>Return\'
+      # Custom keybinding 2 Flameshot OCR
+      - schema: org.gnome.settings-daemon.plugins.media-keys   # Create the custom1 keybinding
+        key: custom-keybindings
+        value: \[\'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/\'\]
+      - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/   # Name
+        key: name
+        value: Flameshot OCR English
+      - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/   # Command
+        key: command
+        value: "flameshot gui --raw     | tesseract -l eng stdin stdout     | xclip -selection clipboard"
+      - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/   # Command
+        key: binding
+        value: \'<Super>O\'
+ 
     gnome_user: kzeran
 
 - name: Set OhMyZsh
