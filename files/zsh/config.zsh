@@ -111,7 +111,6 @@ export SHELL="/usr/bin/zsh"
 export EDITOR="nvim"
 export TERMINAL="gnome-terminal"
 export BROWSER="firefox"
-export GITHUB_TOKEN="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"
 export TF_PLUGIN_CACHE_DIR=~/.cache/terraform/plugins-cache
 
 
