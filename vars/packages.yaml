@@ -73,10 +73,11 @@ packages:
   - levien-inconsolata-fonts
   - google-go-mono-fonts
   - jetbrains-mono-fonts
+  - tesseract
+  - xclip
 
 flatpaks:
   - com.spotify.Client
-  - com.authy.Authy
   - com.anydesk.Anydesk
   - com.bitwarden.desktop
   - com.obsproject.Studio
@@ -87,7 +88,6 @@ flatpaks:
   - org.onlyoffice.desktopeditors
   - org.cryptomator.Cryptomator
   - me.kozec.syncthingtk
-  - com.github.iwalton3.jellyfin-media-player
   - org.signal.Signal
 
 # third party packages
